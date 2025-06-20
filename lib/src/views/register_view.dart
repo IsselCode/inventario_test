@@ -13,6 +13,9 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(),
       floatingActionButton: Padding(
@@ -34,9 +37,15 @@ class RegisterView extends StatelessWidget {
               //! Registro
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text("Registrarse"),
+                  Text("Registrarse", style: textTheme.displayLarge),
                   TextButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      minimumSize: Size.zero, // Elimina el tamaño mínimo
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Reduce el área táctil
+                    ),
                     onPressed: () => goToLoginAct(context),
                     child: Text("Ingresar"),
                   )
