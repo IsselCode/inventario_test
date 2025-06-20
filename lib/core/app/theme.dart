@@ -16,7 +16,9 @@ ThemeData lightTheme = ThemeData(
     bodyLarge: GoogleFonts.sairaStencilOne().copyWith(fontSize: 18, fontWeight: FontWeight.bold),
     labelMedium: GoogleFonts.sairaStencilOne().copyWith(color: Colors.black54, fontWeight: FontWeight.normal)
   ),
-
+  iconTheme: IconThemeData(
+    color: AppColors.onSurfaceLight,
+  ),
   colorScheme: ColorScheme.light(
     surface: AppColors.surfaceVariantLight,
     onSecondary: AppColors.onSurfaceLight,
@@ -38,7 +40,9 @@ ThemeData darkTheme = ThemeData(
     bodyLarge: GoogleFonts.sairaStencilOne().copyWith(fontSize: 18, fontWeight: FontWeight.bold),
     labelMedium: GoogleFonts.sairaStencilOne().copyWith(color: Colors.black54, fontWeight: FontWeight.normal)
   ),
-
+  iconTheme: IconThemeData(
+      color: AppColors.onSurfaceDark
+  ),
   colorScheme: ColorScheme.dark(
     surface: AppColors.surfaceVariantDark,
     onSecondary: AppColors.onSurfaceDark,

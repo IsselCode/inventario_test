@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventario_test/core/app/consts.dart';
 
 class TextFormFieldWidget extends FormField<String> {
   final String hintText;
@@ -23,27 +24,32 @@ class TextFormFieldWidget extends FormField<String> {
 
       return StatefulBuilder(
         builder: (context, setState) {
+
+          TextTheme textTheme = Theme.of(context).textTheme;
+          ColorScheme colorScheme = Theme.of(context).colorScheme;
+
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 5, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Row(
                   children: [
-                    Icon(icon, size: 30),
+                    Icon(icon, size: 30, color: AppColors.primary,),
                     const SizedBox(width: 20),
                     Expanded(
                       child: TextField(
                         controller: textEditingController,
                         obscureText: isObscured,
                         onChanged: field.didChange,
+                        style: textTheme.bodyMedium!.copyWith(color: colorScheme.onSecondary),
                         decoration: InputDecoration(
                           hintText: hintText,
+                          hintStyle: textTheme.bodyMedium!.copyWith(color: AppColors.neutralGrey),
                           border: InputBorder.none,
                         ),
                       ),
@@ -54,7 +60,7 @@ class TextFormFieldWidget extends FormField<String> {
                           isObscured
                               ? Icons.visibility_off
                               : Icons.visibility,
-                          color: Colors.grey,
+                          color: AppColors.neutralGrey,
                         ),
                         onPressed: () {
                           setState(() {
