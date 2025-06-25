@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:inventario_test/core/app/theme.dart';
+import 'package:inventario_test/inject_container.dart';
 import 'package:inventario_test/src/views/first_screen_view.dart';
-import 'package:inventario_test/src/views/login_view.dart';
-import 'package:inventario_test/src/views/register_view.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await injectContainer();
+
   runApp(const MyApp());
 }
 
