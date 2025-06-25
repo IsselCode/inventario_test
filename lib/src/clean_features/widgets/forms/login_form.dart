@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:inventario_test/src/clean_features/inputs/login_input_model.dart';
 import 'package:inventario_test/src/clean_features/widgets/error_wrapper_widget.dart';
 import 'package:inventario_test/src/clean_features/widgets/text_form_field_widget.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class LoginForm extends StatefulWidget {
 
-  final Function(String user, String password) onValidate;
+  final Function(LoginInputModel loginInputModel) onValidate;
 
   const LoginForm({
     super.key,
@@ -31,7 +32,9 @@ class LoginFormState extends State<LoginForm> {
     String username = usernameController.text;
     String password = passwordController.text;
 
-    widget.onValidate(username, password);
+    LoginInputModel loginInputModel = LoginInputModel(username: username, password: password);
+
+    widget.onValidate(loginInputModel);
   }
 
   @override

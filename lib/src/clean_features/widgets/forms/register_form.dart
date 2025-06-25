@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:inventario_test/src/clean_features/inputs/register_input_model.dart';
 import 'package:inventario_test/src/clean_features/widgets/error_wrapper_widget.dart';
 import 'package:inventario_test/src/clean_features/widgets/text_form_field_widget.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class RegisterForm extends StatefulWidget {
 
-  final Function(String name, String user, String password) onValidate;
+  final Function(RegisterInputModel registerInputModel) onValidate;
 
   const RegisterForm({
     super.key,
@@ -34,7 +35,13 @@ class RegisterFormState extends State<RegisterForm> {
     String name = nameController.text;
     String password = passwordController.text;
 
-    widget.onValidate(name, username, password);
+    RegisterInputModel registerInputModel = RegisterInputModel(
+      name: name,
+      username: username,
+      password: password
+    );
+
+    widget.onValidate(registerInputModel);
   }
 
   @override

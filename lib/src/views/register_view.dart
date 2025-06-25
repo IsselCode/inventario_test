@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventario_test/src/clean_features/inputs/register_input_model.dart';
 import 'package:inventario_test/src/clean_features/widgets/auth_structure_widget.dart';
 import 'package:inventario_test/src/clean_features/widgets/forms/login_form.dart';
 import 'package:inventario_test/src/clean_features/widgets/forms/register_form.dart';
@@ -56,7 +57,7 @@ class RegisterView extends StatelessWidget {
               //! Formulario
               RegisterForm(
                 key: _childKey,
-                onValidate: loginAct,
+                onValidate: registerAct,
               ),
 
             ],
@@ -70,7 +71,7 @@ class RegisterView extends StatelessWidget {
     Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView(),));
   }
 
-  Future<void> loginAct(String name, String user, String password) async {
+  Future<void> registerAct(RegisterInputModel registerInputModel) async {
 
   }
 

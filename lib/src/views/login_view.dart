@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventario_test/src/clean_features/inputs/login_input_model.dart';
 import 'package:inventario_test/src/clean_features/widgets/auth_structure_widget.dart';
 import 'package:inventario_test/src/clean_features/widgets/forms/login_form.dart';
 import 'package:inventario_test/src/views/register_view.dart';
@@ -67,7 +68,7 @@ class LoginView extends StatelessWidget {
     Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterView(),));
   }
 
-  Future<void> loginAct(String user, String password) async {
+  Future<void> loginAct(LoginInputModel loginInputModel) async {
 
   }
 
