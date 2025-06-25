@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:inventario_test/core/app/theme.dart';
+import 'package:inventario_test/core/services/navigation_service.dart';
 import 'package:inventario_test/inject_container.dart';
 import 'package:inventario_test/src/views/first_screen_view.dart';
 import 'package:provider/provider.dart';
+
+import 'src/controllers/auth_controller.dart';
+import 'src/controllers/user_controller.dart';
 
 Future<void> main() async {
 
@@ -19,11 +23,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      home: FirstScreenView()
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserController(),),
+        ChangeNotifierProvider(create: (context) => AuthController(
+          sharedModel: locator(),
+          userController: context.read(),
+          navigationService: locator()
+        ),
+        )
+      ],
+      builder: (context, child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          navigatorKey: locator<NavigationService>().navigatorKey,
+          theme: lightTheme,
+          home: FirstScreenView()
+        );
+      },
     );
   }
 }
+

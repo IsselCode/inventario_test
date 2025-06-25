@@ -2,6 +2,7 @@ import 'package:bcrypt/bcrypt.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:inventario_test/core/app/errors.dart';
+import 'package:inventario_test/core/services/navigation_service.dart';
 import 'package:inventario_test/src/clean_features/dtos/login_user_dto.dart';
 import 'package:inventario_test/src/clean_features/dtos/register_user_dto.dart';
 import 'package:inventario_test/src/clean_features/entities/user_entity.dart';
@@ -9,15 +10,18 @@ import 'package:inventario_test/src/clean_features/inputs/login_input_model.dart
 import 'package:inventario_test/src/clean_features/inputs/register_input_model.dart';
 import 'package:inventario_test/src/controllers/user_controller.dart';
 import 'package:inventario_test/src/models/shared_model.dart';
+import 'package:inventario_test/src/views/home_view.dart';
 
 class AuthController extends ChangeNotifier {
 
   SharedModel sharedModel;
   UserController userController;
+  NavigationService navigationService;
 
   AuthController({
     required this.sharedModel,
-    required this.userController
+    required this.userController,
+    required this.navigationService,
   });
 
   Future<void> registerUser(RegisterInputModel rim) async {
@@ -39,6 +43,7 @@ class AuthController extends ChangeNotifier {
       },
       (r) {
         userController.user = r;
+        navigationService.navigateAndReplace(HomeView());
       },
     );
 
@@ -56,6 +61,7 @@ class AuthController extends ChangeNotifier {
       },
       (r) {
         userController.user = r;
+        navigationService.navigateAndReplace(HomeView());
       },
     );
 
