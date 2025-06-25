@@ -54,7 +54,7 @@ class RegisterFormState extends State<RegisterForm> {
             validator: (value) {
               if (value!.isEmpty) return "Campo Vacío";
             },
-            textEditingController: usernameController,
+            textEditingController: nameController,
             hintText: "Nombre",
             icon: Symbols.person_outline,
           ),

@@ -3,8 +3,10 @@ import 'package:inventario_test/src/clean_features/inputs/register_input_model.d
 import 'package:inventario_test/src/clean_features/widgets/auth_structure_widget.dart';
 import 'package:inventario_test/src/clean_features/widgets/forms/login_form.dart';
 import 'package:inventario_test/src/clean_features/widgets/forms/register_form.dart';
+import 'package:inventario_test/src/controllers/auth_controller.dart';
 import 'package:inventario_test/src/views/login_view.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:provider/provider.dart';
 
 class RegisterView extends StatelessWidget {
 
@@ -15,6 +17,7 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    AuthController authController = context.read();
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
@@ -57,7 +60,7 @@ class RegisterView extends StatelessWidget {
               //! Formulario
               RegisterForm(
                 key: _childKey,
-                onValidate: registerAct,
+                onValidate: authController.registerUser,
               ),
 
             ],
@@ -69,10 +72,6 @@ class RegisterView extends StatelessWidget {
 
   void goToLoginAct(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView(),));
-  }
-
-  Future<void> registerAct(RegisterInputModel registerInputModel) async {
-
   }
 
 }

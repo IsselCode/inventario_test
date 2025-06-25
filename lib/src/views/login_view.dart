@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:inventario_test/src/clean_features/inputs/login_input_model.dart';
 import 'package:inventario_test/src/clean_features/widgets/auth_structure_widget.dart';
 import 'package:inventario_test/src/clean_features/widgets/forms/login_form.dart';
+import 'package:inventario_test/src/controllers/auth_controller.dart';
 import 'package:inventario_test/src/views/register_view.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:provider/provider.dart';
 
 class LoginView extends StatelessWidget {
 
@@ -13,7 +15,7 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    AuthController authController = context.read();
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
@@ -55,7 +57,7 @@ class LoginView extends StatelessWidget {
             //! Formulario
             LoginForm(
               key: _childKey,
-              onValidate: loginAct,
+              onValidate: authController.loginUser,
             ),
             Spacer()
           ],
@@ -66,10 +68,6 @@ class LoginView extends StatelessWidget {
 
   void goToRegisterViewAct(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterView(),));
-  }
-
-  Future<void> loginAct(LoginInputModel loginInputModel) async {
-
   }
 
 }

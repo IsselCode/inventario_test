@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:toastification/toastification.dart';
 
 class ToastService {
@@ -14,6 +15,7 @@ class ToastService {
       animationBuilder: (context, animation, alignment, child) {
         return FadeTransition(opacity: animation, child: child);
       },
+      icon: Icon(Symbols.error),
       borderRadius: BorderRadius.circular(12.0),
       boxShadow: lowModeShadow,
       showProgressBar: true,
@@ -32,6 +34,7 @@ class ToastService {
       animationBuilder: (context, animation, alignment, child) {
         return FadeTransition(opacity: animation, child: child);
       },
+      icon: Icon(Symbols.verified),
       borderRadius: BorderRadius.circular(12.0),
       boxShadow: lowModeShadow,
       showProgressBar: true,
