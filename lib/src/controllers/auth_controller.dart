@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:inventario_test/core/app/errors.dart';
 import 'package:inventario_test/core/services/navigation_service.dart';
+import 'package:inventario_test/core/services/toast_service.dart';
 import 'package:inventario_test/src/clean_features/dtos/login_user_dto.dart';
 import 'package:inventario_test/src/clean_features/dtos/register_user_dto.dart';
 import 'package:inventario_test/src/clean_features/entities/user_entity.dart';
@@ -17,11 +18,13 @@ class AuthController extends ChangeNotifier {
   SharedModel sharedModel;
   UserController userController;
   NavigationService navigationService;
+  ToastService toastService;
 
   AuthController({
     required this.sharedModel,
     required this.userController,
     required this.navigationService,
+    required this.toastService
   });
 
   Future<void> registerUser(RegisterInputModel rim) async {
@@ -39,7 +42,7 @@ class AuthController extends ChangeNotifier {
 
     response.fold(
       (l) {
-        throw UnimplementedError();
+        toastService.error(l.message);
       },
       (r) {
         userController.user = r;
@@ -57,7 +60,7 @@ class AuthController extends ChangeNotifier {
 
     response.fold(
       (l) {
-        throw UnimplementedError();
+        toastService.error(l.message);
       },
       (r) {
         userController.user = r;

@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:inventario_test/core/services/navigation_service.dart';
+import 'package:inventario_test/core/services/toast_service.dart';
 import 'package:inventario_test/src/models/shared_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +12,7 @@ Future<void> injectContainer() async {
 
   locator.registerLazySingleton(() => sharedPreferences);
   locator.registerLazySingleton(() => NavigationService(),);
+  locator.registerLazySingleton(() => ToastService(),);
 
   locator.registerLazySingleton(() => SharedModel(shared: locator()),);
 

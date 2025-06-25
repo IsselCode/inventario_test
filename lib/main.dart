@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:inventario_test/core/app/theme.dart';
 import 'package:inventario_test/core/services/navigation_service.dart';
+import 'package:inventario_test/core/services/toast_service.dart';
 import 'package:inventario_test/inject_container.dart';
 import 'package:inventario_test/src/views/first_screen_view.dart';
 import 'package:provider/provider.dart';
+import 'package:toastification/toastification.dart';
 
 import 'src/controllers/auth_controller.dart';
 import 'src/controllers/user_controller.dart';
@@ -29,17 +31,20 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => AuthController(
           sharedModel: locator(),
           userController: context.read(),
-          navigationService: locator()
+          navigationService: locator(),
+          toastService: locator()
         ),
         )
       ],
       builder: (context, child) {
-        return MaterialApp(
-          title: 'Flutter Demo',
-          debugShowCheckedModeBanner: false,
-          navigatorKey: locator<NavigationService>().navigatorKey,
-          theme: lightTheme,
-          home: FirstScreenView()
+        return ToastificationWrapper(
+          child: MaterialApp(
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
+            navigatorKey: locator<NavigationService>().navigatorKey,
+            theme: lightTheme,
+            home: FirstScreenView()
+          ),
         );
       },
     );
