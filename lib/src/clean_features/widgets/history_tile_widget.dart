@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:inventario_test/core/app/enums.dart';
 
 class HistoryTileWidget extends StatelessWidget {
 
+  final InventoryMovementType movementType;
   final String title;
   final DateTime date;
   final int quantity;
 
   const HistoryTileWidget({
     super.key,
+    required this.movementType,
     required this.title,
     required this.date,
     required this.quantity
@@ -28,7 +31,7 @@ class HistoryTileWidget extends StatelessWidget {
       child: Row(
         children: [
           Icon(
-            Icons.inventory_2_outlined,
+            movementType == InventoryMovementType.stockIn ?  Icons.inventory_2_outlined : Icons.archive_outlined,
             size: 30,
             color: colorScheme.primary,
           ),

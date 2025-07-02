@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventario_test/core/app/enums.dart';
 import 'package:inventario_test/src/clean_features/widgets/history_tile_widget.dart';
 
 class HistoryPage extends StatelessWidget {
@@ -15,6 +16,7 @@ class HistoryPage extends StatelessWidget {
         itemCount: 10,
         itemBuilder: (context, index) {
           return HistoryTileWidget(
+            movementType: InventoryMovementType.stockOut,
             title: "Velocix Sport",
             date: DateTime.now(),
             quantity: 9,
