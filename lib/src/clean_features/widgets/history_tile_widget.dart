@@ -1,0 +1,57 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+class HistoryTileWidget extends StatelessWidget {
+
+  final String title;
+  final DateTime date;
+  final int quantity;
+
+  const HistoryTileWidget({
+    super.key,
+    required this.title,
+    required this.date,
+    required this.quantity
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+
+    return Container(
+      padding: EdgeInsets.all(15),
+      decoration: BoxDecoration(
+          color: colorScheme.surface,
+          borderRadius: BorderRadius.circular(20)
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.inventory_2_outlined,
+            size: 30,
+            color: colorScheme.primary,
+          ),
+          const SizedBox(width: 10,),
+          Expanded(
+            child: Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            )
+          ),
+          const SizedBox(width: 10,),
+          Text(DateFormat("dd/MM/yyyy").format(date)),
+          const SizedBox(width: 10,),
+          SizedBox(
+            width: 60,
+            child: Text(
+              "${quantity.toString()}${quantity > 99999 ? "+" : ""}",
+              textAlign: TextAlign.end,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
