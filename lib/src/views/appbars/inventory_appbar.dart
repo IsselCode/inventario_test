@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:inventario_test/src/controllers/ui/inventory_controller.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:provider/provider.dart';
 
 class InventoryAppbar extends StatelessWidget implements PreferredSizeWidget {
 
@@ -8,6 +10,10 @@ class InventoryAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    
+    InventoryController inventoryController = context.watch();
+    
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: AppBar(
@@ -17,6 +23,9 @@ class InventoryAppbar extends StatelessWidget implements PreferredSizeWidget {
             const SizedBox(width: 10,),
             Expanded(
               child: TextField(
+                onSubmitted: inventoryController.onSearch,
+                onChanged: inventoryController.onChangedSearch,
+                controller: inventoryController.searchController,
                 style: textTheme.bodyMedium,
                 decoration: InputDecoration(
                   hintText: "Buscar",
@@ -24,9 +33,21 @@ class InventoryAppbar extends StatelessWidget implements PreferredSizeWidget {
                   hintStyle: textTheme.labelMedium
                 ),
               ),
-            )
+            ),
           ],
         ),
+        actions: [
+          if (!inventoryController.searching)
+          IconButton(
+            onPressed: inventoryController.navigateToAddNewProduct,
+            icon: Icon(Symbols.add_circle, color: colorScheme.primary,)
+          ),
+          if (inventoryController.searching)
+          IconButton(
+            onPressed: inventoryController.clearSearch,
+            icon: Icon(Symbols.close, color: Colors.red,)
+          ),
+        ],
       ),
     );
   }
