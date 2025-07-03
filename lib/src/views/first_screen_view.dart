@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inventario_test/src/clean_features/widgets/auth_structure_widget.dart';
 import 'package:inventario_test/src/clean_features/widgets/filled_button_widget.dart';
 import 'package:inventario_test/src/views/login_view.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class FirstScreenView extends StatelessWidget {
 
@@ -30,6 +31,7 @@ class FirstScreenView extends StatelessWidget {
             //! BOTÓN PARA IR AL LOGIN
             FilledButtonWidget(
               onPressed: () => goToLogin(context),
+              icon: Symbols.arrow_forward,
               text: "Comenzar",
             ),
           ],

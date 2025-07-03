@@ -3,20 +3,24 @@ import 'package:inventario_test/core/app/consts.dart';
 
 class TextFormFieldWidget extends FormField<String> {
   final String hintText;
-  final TextEditingController textEditingController;
+  final TextEditingController? textEditingController;
+  final bool showIcon;
   final bool obscureText;
   final IconData icon;
+  final bool readOnly;
 
   TextFormFieldWidget({
     Key? key,
     required this.hintText,
-    required this.textEditingController,
+    this.textEditingController,
     required this.icon,
+    this.showIcon = true,
+    this.readOnly = false,
     this.obscureText = false,
-    required FormFieldValidator<String>? validator,
+    FormFieldValidator<String>? validator,
   }) : super(
     key: key,
-    initialValue: textEditingController.text,
+    initialValue: textEditingController?.text,
     validator: validator,
     builder: (FormFieldState<String> field) {
       // Estado interno para mostrar/ocultar contraseña
@@ -39,10 +43,13 @@ class TextFormFieldWidget extends FormField<String> {
                 ),
                 child: Row(
                   children: [
-                    Icon(icon, size: 30, color: AppColors.primary,),
-                    const SizedBox(width: 20),
+                    if (showIcon)...[
+                      Icon(icon, size: 30, color: AppColors.primary,),
+                      const SizedBox(width: 20),
+                    ],
                     Expanded(
                       child: TextField(
+                        readOnly: readOnly,
                         controller: textEditingController,
                         obscureText: isObscured,
                         onChanged: field.didChange,

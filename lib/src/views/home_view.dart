@@ -22,9 +22,9 @@ class HomeView extends StatelessWidget {
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         children: [
-          HistoryPage(),
+          ProfilePage(),
           InventoryPage(),
-          ProfilePage()
+          HistoryPage(),
         ],
       ),
     );

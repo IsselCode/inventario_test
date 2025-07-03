@@ -4,11 +4,13 @@ class FilledButtonWidget extends StatelessWidget {
 
   final VoidCallback onPressed;
   final String text;
+  final IconData? icon;
 
   const FilledButtonWidget({
     super.key,
     required this.onPressed,
-    required this.text
+    required this.text,
+    this.icon
   });
 
   @override
@@ -23,10 +25,11 @@ class FilledButtonWidget extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: icon != null ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
         children: [
           Text(text, style: textTheme.bodyLarge!.copyWith(color: colorScheme.onPrimary),),
-          Icon(Icons.arrow_forward)
+          if (icon != null)
+          Icon(icon)
         ],
       )
     );
