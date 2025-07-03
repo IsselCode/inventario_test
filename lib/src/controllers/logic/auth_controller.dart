@@ -9,7 +9,7 @@ import 'package:inventario_test/src/clean_features/dtos/register_user_dto.dart';
 import 'package:inventario_test/src/clean_features/entities/user_entity.dart';
 import 'package:inventario_test/src/clean_features/inputs/login_input_model.dart';
 import 'package:inventario_test/src/clean_features/inputs/register_input_model.dart';
-import 'package:inventario_test/src/controllers/user_controller.dart';
+import 'package:inventario_test/src/controllers/logic/user_controller.dart';
 import 'package:inventario_test/src/models/shared_model.dart';
 import 'package:inventario_test/src/views/home_view.dart';
 

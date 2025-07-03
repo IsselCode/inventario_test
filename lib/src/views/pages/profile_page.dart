@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:inventario_test/core/utils/get_initials_util.dart';
 import 'package:inventario_test/src/clean_features/widgets/filled_button_widget.dart';
 import 'package:inventario_test/src/clean_features/widgets/text_form_field_widget.dart';
-import 'package:inventario_test/src/controllers/user_controller.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:provider/provider.dart';
+
+import '../../controllers/logic/user_controller.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

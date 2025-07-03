@@ -3,7 +3,7 @@ import 'package:inventario_test/src/clean_features/inputs/register_input_model.d
 import 'package:inventario_test/src/clean_features/widgets/auth_structure_widget.dart';
 import 'package:inventario_test/src/clean_features/widgets/forms/login_form.dart';
 import 'package:inventario_test/src/clean_features/widgets/forms/register_form.dart';
-import 'package:inventario_test/src/controllers/auth_controller.dart';
+import 'package:inventario_test/src/controllers/logic/auth_controller.dart';
 import 'package:inventario_test/src/views/login_view.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:provider/provider.dart';

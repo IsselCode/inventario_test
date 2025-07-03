@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:inventario_test/core/app/theme.dart';
 import 'package:inventario_test/core/services/navigation_service.dart';
-import 'package:inventario_test/core/services/toast_service.dart';
 import 'package:inventario_test/inject_container.dart';
+import 'package:inventario_test/src/controllers/logic/user_controller.dart';
 import 'package:inventario_test/src/views/first_screen_view.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
-import 'src/controllers/auth_controller.dart';
-import 'src/controllers/user_controller.dart';
+import 'src/controllers/logic/auth_controller.dart';
 
 Future<void> main() async {
 

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:inventario_test/src/clean_features/inputs/login_input_model.dart';
 import 'package:inventario_test/src/clean_features/widgets/auth_structure_widget.dart';
 import 'package:inventario_test/src/clean_features/widgets/forms/login_form.dart';
-import 'package:inventario_test/src/controllers/auth_controller.dart';
+import 'package:inventario_test/src/controllers/logic/auth_controller.dart';
 import 'package:inventario_test/src/views/register_view.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:provider/provider.dart';

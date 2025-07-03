@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:inventario_test/src/views/appbars/history_appbar.dart';
+import 'package:inventario_test/src/views/appbars/inventory_appbar.dart';
+import 'package:inventario_test/src/views/appbars/profile_appbar.dart';
 import 'package:inventario_test/src/views/pages/history_page.dart';
 import 'package:inventario_test/src/views/pages/inventory_page.dart';
 import 'package:inventario_test/src/views/pages/profile_page.dart';
@@ -27,9 +30,16 @@ class _HomeViewState extends State<HomeView> {
     setState(() {});
   }
 
+  List<PreferredSizeWidget> appbars = [
+    InventoryAppbar(),
+    HistoryAppbar(),
+    ProfileAppbar()
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appbars[pageController.page!.toInt()],
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,
