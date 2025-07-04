@@ -22,10 +22,10 @@ class AddProductForm extends StatefulWidget {
   });
 
   @override
-  State<AddProductForm> createState() => LoginFormState();
+  State<AddProductForm> createState() => AddProductFormState();
 }
 
-class LoginFormState extends State<AddProductForm> {
+class AddProductFormState extends State<AddProductForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
@@ -35,6 +35,7 @@ class LoginFormState extends State<AddProductForm> {
 
   //! Metodo publico para widget padre
   void triggerAction() {
+    print("holaa");
 
     if (!_formKey.currentState!.validate()) {
       return;
@@ -50,10 +51,11 @@ class LoginFormState extends State<AddProductForm> {
       name: name,
       description: description,
       rawPrice: price,
-      rawQuantity: quantity
+      rawQuantity: quantity,
+      image: image
     );
 
-    response.fold(
+    return response.fold(
       (errors) {
         ToastService toastService = locator();
         toastService.error(errors.join("n"));
