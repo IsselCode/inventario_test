@@ -7,6 +7,7 @@ class TextFormFieldWidget extends FormField<String> {
   final bool showIcon;
   final bool obscureText;
   final IconData icon;
+  final TextInputType? keyboardType;
   final bool readOnly;
 
   TextFormFieldWidget({
@@ -17,6 +18,7 @@ class TextFormFieldWidget extends FormField<String> {
     this.showIcon = true,
     this.readOnly = false,
     this.obscureText = false,
+    this.keyboardType,
     FormFieldValidator<String>? validator,
   }) : super(
     key: key,
@@ -49,6 +51,7 @@ class TextFormFieldWidget extends FormField<String> {
                     ],
                     Expanded(
                       child: TextField(
+                        keyboardType: keyboardType,
                         readOnly: readOnly,
                         controller: textEditingController,
                         obscureText: isObscured,
