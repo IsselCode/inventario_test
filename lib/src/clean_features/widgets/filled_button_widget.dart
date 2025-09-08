@@ -5,12 +5,14 @@ class FilledButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   final IconData? icon;
+  final double width;
 
   const FilledButtonWidget({
     super.key,
     required this.onPressed,
     required this.text,
-    this.icon
+    this.icon,
+    this.width = 220
   });
 
   @override
@@ -21,7 +23,7 @@ class FilledButtonWidget extends StatelessWidget {
 
     return FilledButton(
       style: FilledButton.styleFrom(
-        fixedSize: Size(220, 60)
+        fixedSize: Size(width, 60)
       ),
       onPressed: onPressed,
       child: Row(

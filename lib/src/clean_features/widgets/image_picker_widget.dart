@@ -85,7 +85,9 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                   child: Column(
                     children: [
                       Expanded(
-                        child: Image.asset("assets/no_image.jpg")
+                        child: showImage != null
+                          ? Image.memory(showImage!)
+                          : Image.asset("assets/no_image.jpg")
                       ),
                       const SizedBox(height: 10,),
                       Text("Selecciona una imagen")

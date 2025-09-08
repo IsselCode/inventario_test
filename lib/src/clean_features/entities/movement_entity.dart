@@ -7,6 +7,8 @@ class MovementEntity {
   String productName;
   InventoryMovementType type;
   DateTime createdAt;
+  int qnty;
+  double priceAt;
 
   MovementEntity({
     required this.id,
@@ -14,6 +16,8 @@ class MovementEntity {
     required this.productName,
     required this.type,
     required this.createdAt,
+    required this.qnty,
+    required this.priceAt
   });
 
  }
