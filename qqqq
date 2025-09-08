@@ -1,0 +1,143 @@
+[33mcommit 5ca4814527152e7913e974f0f461d9295c65bfcb[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: issel <isselcode@gmail.com>
+Date:   Fri Jul 4 13:48:05 2025 -0600
+
+    Ajustando botón de la vista
+
+[33mcommit 6362199ec7cdb4d1c3ba7c52f882fb7a2beca33f[m
+Author: issel <isselcode@gmail.com>
+Date:   Fri Jul 4 13:26:23 2025 -0600
+
+    Formulario para crear un nuevo producto
+
+[33mcommit 2176d2256b6352d219d0e64ec22dbba618122dc6[m
+Author: issel <isselcode@gmail.com>
+Date:   Fri Jul 4 11:59:36 2025 -0600
+
+    Selector de imágenes con image Picker
+
+[33mcommit 5c5286891edeae66d26e34ecdee7efa6bfc01f68[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jul 2 22:35:53 2025 -0600
+
+    Controlador para la página de inventario
+
+[33mcommit 7ff7b8cdca1c7f71b86c6887aaea1de4a35c72ee[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jul 2 21:46:16 2025 -0600
+
+    Creando los appbar´s
+
+[33mcommit 18dccc974e1bfd8a06d28d843fd6e1bcfcb26d87[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jul 2 19:12:07 2025 -0600
+
+    Agregando interactividad al PageView
+
+[33mcommit 8d05a2d0737cbac1078315ab1b55433bf133c488[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jul 2 18:54:29 2025 -0600
+
+    Vista ProfilePageView
+
+[33mcommit 1fd8cf9435f97eb803ff45a8cc45c85c1067f295[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jul 2 17:45:56 2025 -0600
+
+    Enumeración para el icono del HistoryTileWidget
+
+[33mcommit 8384a0748416bfadadbf23d0fa116caaab0b5dc9[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jul 2 17:37:30 2025 -0600
+
+    HistoryTileWidget
+
+[33mcommit 2d947c6019284b4f17380729439fe3c8d7138391[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jul 2 16:49:12 2025 -0600
+
+    Estructura del HomeView e InventoryTileWidget
+
+[33mcommit 5fa6ff9854b45fc4f29a17df99b6e44466351772[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jun 25 15:46:24 2025 -0600
+
+    Probando la autenticación
+
+[33mcommit 924014a4a6f5e7fbd2ac985c6ebc5cd79adc6d8d[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jun 25 15:38:11 2025 -0600
+
+    Usando toastification para mostrar los errores
+
+[33mcommit cca79bb4cb04fc048a1309f0dc0dfd6a57639f69[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jun 25 15:29:19 2025 -0600
+
+    Creando un servicio de navegación
+
+[33mcommit 9f78239f3e0eb5e43d9774701f0d5e722098f12b[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jun 25 15:16:11 2025 -0600
+
+    Controlador para gestionar al usuario
+
+[33mcommit e3d952cc1c2595f1e61f7c7ca3d4b9885a866733[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jun 25 14:57:24 2025 -0600
+
+    Controlador para gestionar la autenticación
+
+[33mcommit 3a1855b283de5846dc1d9900785d02e8e537a5e0[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jun 25 14:41:08 2025 -0600
+
+    Singletons e inyección dependencias usando get_it
+
+[33mcommit 83e0fea29f8a6cc6fd137aa35017b05166885579[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jun 25 14:27:58 2025 -0600
+
+    programación funcional con dartz para gestionar fallos y éxitos correctamente
+
+[33mcommit c94a6533ea5fcdf2f18c1ff186df2893b647ce7a[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jun 25 14:15:56 2025 -0600
+
+    Errores personalizados
+
+[33mcommit 75900c783019abde36f93f026d2d67016f1cd68c[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jun 25 14:11:28 2025 -0600
+
+    Modelo para gestionar el usuario con Shared
+
+[33mcommit 879b40f38370148e1274a0b4a766427f39957cd1[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jun 25 13:48:03 2025 -0600
+
+    Creando la entidad usuario
+
+[33mcommit 75bebc1beb9196d4fe63a8df6c6be8c2bb041fae[m
+Author: issel <isselcode@gmail.com>
+Date:   Wed Jun 25 13:45:48 2025 -0600
+
+    Data Transfer Object´s para gestionar los datos
+
+[33mcommit ed9aa9e7654f13710c27c69d0f829629ab6c13e0[m
+Author: issel <isselcode@gmail.com>
+Date:   Fri Jun 20 17:24:47 2025 -0600
+
+    Estilizando la vista de registro
+
+[33mcommit e3741676cf113df9f28ec7e9d15eee25fc6dfb16[m
+Author: issel <isselcode@gmail.com>
+Date:   Fri Jun 20 17:23:28 2025 -0600
+
+    Estilizando el Login
+
+[33mcommit 80d554c5a558d8ed66f470391c43d512114f7406[m
+Author: issel <isselcode@gmail.com>
+Date:   Fri Jun 20 15:50:27 2025 -0600
+
+    Estilizando la primera vista
