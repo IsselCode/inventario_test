@@ -16,11 +16,13 @@ import '../../../../inject_container.dart';
 class EditProductForm extends StatefulWidget {
 
   final ProductEntity product;
+  final Uint8List? image;
   final Function(EditProductInput epi) onValidate;
 
   const EditProductForm({
     super.key,
     required this.onValidate,
+    required this.image,
     required this.product,
   });
 
@@ -28,15 +30,12 @@ class EditProductForm extends StatefulWidget {
   State<EditProductForm> createState() => EditProductFormState();
 }
 
-class EditProductFormState extends State<EditProductForm> with AutomaticKeepAliveClientMixin {
+class EditProductFormState extends State<EditProductForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   Uint8List? selectedImage;
-
-  @override
-  bool get wantKeepAlive => true;
 
   //! Iniciar elementos
   @override
@@ -45,15 +44,7 @@ class EditProductFormState extends State<EditProductForm> with AutomaticKeepAliv
     nameController.text = widget.product.title;
     descriptionController.text = widget.product.description;
     priceController.text = widget.product.price.toStringAsFixed(2);
-
-    File file = File(widget.product.image);
-    file.readAsBytes().then((value) {
-      selectedImage = value;
-    },).onError((error, stackTrace) {
-      ToastService toastService = locator();
-      toastService.error("No se ha podido cargar la imagen");
-    },);
-
+    selectedImage = widget.image;
   }
 
   //! Metodo publico para widget padre

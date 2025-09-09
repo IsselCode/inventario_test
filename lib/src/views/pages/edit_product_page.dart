@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:inventario_test/src/clean_features/entities/product_entity.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -5,19 +7,27 @@ import 'package:material_symbols_icons/symbols.dart';
 import '../../clean_features/widgets/filled_button_widget.dart';
 import '../../clean_features/widgets/forms/edit_product_form.dart';
 
-class EditProductPage extends StatelessWidget {
+class EditProductPage extends StatefulWidget {
 
   final ProductEntity productEntity;
+  final Uint8List? image;
 
   EditProductPage({
     super.key,
+    required this.image,
     required this.productEntity
   });
 
+  @override
+  State<EditProductPage> createState() => _EditProductPageState();
+}
+
+class _EditProductPageState extends State<EditProductPage> with AutomaticKeepAliveClientMixin {
   GlobalKey<EditProductFormState> productFormKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final bottomPadding = MediaQuery.of(context).padding.bottom;
 
     return LayoutBuilder(
@@ -35,7 +45,8 @@ class EditProductPage extends StatelessWidget {
                   child: Column(
                     children: [
                       EditProductForm(
-                        product: productEntity,
+                        image: widget.image,
+                        product: widget.productEntity,
                         key: productFormKey,
                         onValidate: (epi) {
 
@@ -67,4 +78,8 @@ class EditProductPage extends StatelessWidget {
       },
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

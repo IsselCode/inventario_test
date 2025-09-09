@@ -1,10 +1,14 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:inventario_test/src/clean_features/entities/product_entity.dart';
-import 'package:inventario_test/src/clean_features/widgets/filled_button_widget.dart';
-import 'package:inventario_test/src/clean_features/widgets/forms/add_product_form.dart';
 import 'package:inventario_test/src/clean_features/widgets/pill_toggle_widget.dart';
 import 'package:inventario_test/src/views/movement_view.dart';
 import 'package:inventario_test/src/views/pages/edit_product_page.dart';
+
+import '../../core/services/toast_service.dart';
+import '../../inject_container.dart';
 
 class ProductView extends StatefulWidget {
 
@@ -22,17 +26,23 @@ class ProductView extends StatefulWidget {
 class _ProductViewState extends State<ProductView> {
   int currentIndex = 0;
   final PageController pageController = PageController();
-  late final List<Widget> _pages;
+  late final Future<Uint8List?> _imageOnce;
 
   @override
   void initState() {
     super.initState();
-    _pages = [
-      EditProductPage(
-        productEntity: widget.productEntity,
-      ),
-      MovementView()
-    ];
+    _imageOnce = _readImageOnce(widget.productEntity.image);
+  }
+
+  Future<Uint8List?> _readImageOnce(String path) async {
+    try {
+      File file = File(path);
+      return await file.readAsBytes();
+    } catch (e) {
+      ToastService toastService = locator();
+      toastService.error("No se ha podido cargar la imagen");
+      return null;
+    }
   }
 
   @override
@@ -59,15 +69,27 @@ class _ProductViewState extends State<ProductView> {
           const SizedBox(height: 20,),
 
           //* Pages
-          Expanded(
-            child: PageView(
-              onPageChanged: (value) {
-                currentIndex = value;
-                setState(() {});
-              },
-              controller: pageController,
-              children: _pages,
-            ),
+          FutureBuilder(
+            future: _imageOnce,
+            builder: (context, snapshot) {
+              final bytes = snapshot.data;
+              return Expanded(
+                child: PageView(
+                  onPageChanged: (value) {
+                    currentIndex = value;
+                    setState(() {});
+                  },
+                  controller: pageController,
+                  children: [
+                    EditProductPage(
+                      image: bytes,
+                      productEntity: widget.productEntity,
+                    ),
+                    MovementView()
+                  ],
+                ),
+              );
+            },
           ),
         ],
       ),
