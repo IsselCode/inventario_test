@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:inventario_test/src/clean_features/entities/product_entity.dart';
 import 'package:inventario_test/src/clean_features/widgets/pill_toggle_widget.dart';
-import 'package:inventario_test/src/views/movement_view.dart';
+import 'package:inventario_test/src/views/pages/movement_page.dart';
 import 'package:inventario_test/src/views/pages/edit_product_page.dart';
 
 import '../../core/services/toast_service.dart';
@@ -75,6 +75,7 @@ class _ProductViewState extends State<ProductView> {
               final bytes = snapshot.data;
               return Expanded(
                 child: PageView(
+                  physics: NeverScrollableScrollPhysics(),
                   onPageChanged: (value) {
                     currentIndex = value;
                     setState(() {});
@@ -85,7 +86,10 @@ class _ProductViewState extends State<ProductView> {
                       image: bytes,
                       productEntity: widget.productEntity,
                     ),
-                    MovementView()
+                    MovementPage(
+                      image: bytes,
+                      productEntity: widget.productEntity,
+                    )
                   ],
                 ),
               );
