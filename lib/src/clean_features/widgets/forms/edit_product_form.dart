@@ -28,12 +28,15 @@ class EditProductForm extends StatefulWidget {
   State<EditProductForm> createState() => EditProductFormState();
 }
 
-class EditProductFormState extends State<EditProductForm> {
+class EditProductFormState extends State<EditProductForm> with AutomaticKeepAliveClientMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   Uint8List? selectedImage;
+
+  @override
+  bool get wantKeepAlive => true;
 
   //! Iniciar elementos
   @override
