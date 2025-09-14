@@ -35,13 +35,9 @@ class _StockDeltaPickerState extends State<StockDeltaPicker> {
     return null;
   }
 
-  void _notify(int next) {
-    widget.onChanged(next, _typeFor(next));
-  }
-
   void _changeBy(int delta) {
     final next = (widget.value + delta).clamp(widget.min, widget.max);
-    if (next != widget.value) _notify(next);
+    if (next != widget.value) widget.onChanged(next, _typeFor(next));
   }
 
   @override
