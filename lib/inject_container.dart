@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:inventario_test/core/database/product_dao.dart';
 import 'package:inventario_test/core/services/database_service.dart';
 import 'package:inventario_test/core/services/navigation_service.dart';
 import 'package:inventario_test/core/services/toast_service.dart';
@@ -14,6 +15,8 @@ Future<void> injectContainer() async {
   await databaseService.loadDatabase();
 
   locator.registerLazySingleton(() => databaseService,);
+  locator.registerLazySingleton(() => ProductDAO(db: databaseService.db),);
+
   locator.registerLazySingleton(() => sharedPreferences);
   locator.registerLazySingleton(() => NavigationService(),);
   locator.registerLazySingleton(() => ToastService(),);
