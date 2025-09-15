@@ -1,3 +1,4 @@
+import 'package:inventario_test/core/database/migrate_database.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' as p;
 
@@ -15,11 +16,28 @@ class DatabaseService {
 
     _db = await openDatabase(
       path,
-      version: 1,
+      version: 3,
       onConfigure: (db) async {
         await db.execute("PRAGMA foreign_keys = ON");
       },
       onCreate: (db, version) async => await _databaseTables.initTables(db),
+      onUpgrade: (db, oldVersion, newVersion) async {
+        // Aplica solo lo que falte, en orden
+        await db.transaction((txn) async {
+          var v = oldVersion;
+          while (v < newVersion) {
+            v++;
+            switch (v) {
+              case 2:
+                await MigrateDatabase.migrateV1toV2(txn);
+                break;
+              case 3:
+                await MigrateDatabase.migrateV2toV3(txn);
+                break;
+            }
+          }
+        },);
+      },
     );
 
   }
@@ -27,4 +45,3 @@ class DatabaseService {
   Database get db => _db;
 
 }
-
