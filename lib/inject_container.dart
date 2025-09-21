@@ -4,6 +4,7 @@ import 'package:inventario_test/core/database/product_dao.dart';
 import 'package:inventario_test/core/services/database_service.dart';
 import 'package:inventario_test/core/services/navigation_service.dart';
 import 'package:inventario_test/core/services/toast_service.dart';
+import 'package:inventario_test/src/models/product_model.dart';
 import 'package:inventario_test/src/models/shared_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,5 +25,6 @@ Future<void> injectContainer() async {
   locator.registerLazySingleton(() => ToastService(),);
 
   locator.registerLazySingleton(() => SharedModel(shared: locator()),);
+  locator.registerLazySingleton(() => ProductModel(productDAO: locator()),);
 
 }

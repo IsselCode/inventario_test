@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:inventario_test/core/app/theme.dart';
+import 'package:inventario_test/core/database/product_dao.dart';
 import 'package:inventario_test/core/services/navigation_service.dart';
 import 'package:inventario_test/inject_container.dart';
+import 'package:inventario_test/src/controllers/logic/inventory_controller.dart';
 import 'package:inventario_test/src/controllers/logic/user_controller.dart';
+import 'package:inventario_test/src/models/product_model.dart';
 import 'package:inventario_test/src/views/first_screen_view.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
@@ -33,7 +36,12 @@ class MyApp extends StatelessWidget {
           navigationService: locator(),
           toastService: locator()
         ),
-        )
+        ),
+        ChangeNotifierProvider(create: (context) => InventoryController(
+          model: locator(),
+          toastService: locator(),
+          navigationService: locator()
+        ),)
       ],
       builder: (context, child) {
         return ToastificationWrapper(

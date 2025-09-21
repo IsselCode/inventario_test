@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:inventario_test/src/clean_features/inputs/add_new_product_input_model.dart';
 import 'package:inventario_test/src/clean_features/widgets/filled_button_widget.dart';
 import 'package:inventario_test/src/clean_features/widgets/forms/add_product_form.dart';
+import 'package:inventario_test/src/controllers/logic/inventory_controller.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:provider/provider.dart';
 
 class AddNewProductView extends StatelessWidget {
 
@@ -33,9 +36,7 @@ class AddNewProductView extends StatelessWidget {
                       children: [
                         AddProductForm(
                           key: productFormKey,
-                          onValidate: (anpim) {
-                            print(anpim.price);
-                          },
+                          onValidate: (anpim) => createProduct(context, anpim),
                         ),
                         SizedBox(height: 100), // espacio para evitar que el botón tape contenido
                       ],
@@ -63,4 +64,11 @@ class AddNewProductView extends StatelessWidget {
       ),
     );
   }
+
+
+  Future<void> createProduct(BuildContext context, AddNewProductInputModel anpim) async {
+    InventoryController invCtrl = context.read();
+    await invCtrl.createNewProduct(anpim);
+  }
+
 }
