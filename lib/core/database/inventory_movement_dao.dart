@@ -9,4 +9,6 @@ class InventoryMovementDAO {
 
   Future<int> insertMovement(Map<String, Object?> values) => db.insert("inventoryMovement", values);
 
+  Future<int> deleteMovementById(int id) => db.delete("inventoryMovement", where: "id = ?", whereArgs: [id]);
+
 }

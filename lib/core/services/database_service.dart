@@ -16,7 +16,7 @@ class DatabaseService {
 
     _db = await openDatabase(
       path,
-      version: 3,
+      version: 4,
       onConfigure: (db) async {
         await db.execute("PRAGMA foreign_keys = ON");
       },
@@ -33,6 +33,9 @@ class DatabaseService {
                 break;
               case 3:
                 await MigrateDatabase.migrateV2toV3(txn);
+                break;
+              case 4:
+                await MigrateDatabase.migrateV3ToV4(txn);
                 break;
             }
           }

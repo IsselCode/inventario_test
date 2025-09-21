@@ -43,14 +43,5 @@ class ProductDAO {
     );
   }
 
-  Future<int> updateProductStock(int id, int newStock) {
-    return db.update(
-      "product",
-      {"stock": newStock},
-      where: "id = ?",
-      whereArgs: [id],
-    );
-  }
-
   Future<int> deleteProductById(int id) => db.delete("product", where: "id = ?", whereArgs: [id]);
 }
