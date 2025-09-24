@@ -2,7 +2,10 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:inventario_test/src/clean_features/entities/product_entity.dart';
+import 'package:inventario_test/src/clean_features/inputs/edit_product_input.dart';
+import 'package:inventario_test/src/controllers/logic/inventory_controller.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:provider/provider.dart';
 
 import '../../clean_features/widgets/filled_button_widget.dart';
 import '../../clean_features/widgets/forms/edit_product_form.dart';
@@ -48,9 +51,7 @@ class _EditProductPageState extends State<EditProductPage> with AutomaticKeepAli
                         image: widget.image!,
                         product: widget.productEntity,
                         key: productFormKey,
-                        onValidate: (epi) {
-
-                        },
+                        onValidate: (epi) => updateProduct(widget.productEntity.id, epi),
                       ),
                       SizedBox(height: 100), // espacio para evitar que el botón tape contenido
                     ],
@@ -77,6 +78,11 @@ class _EditProductPageState extends State<EditProductPage> with AutomaticKeepAli
         );
       },
     );
+  }
+
+  Future<void> updateProduct(int id, EditProductInput epi) async {
+    InventoryController invCtrl = context.read();
+    await invCtrl.updateProduct(id, epi);
   }
 
   @override

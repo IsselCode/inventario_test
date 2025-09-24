@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:inventario_test/core/services/navigation_service.dart';
 import 'package:inventario_test/core/services/toast_service.dart';
 import 'package:inventario_test/src/clean_features/dtos/create_product_dto.dart';
+import 'package:inventario_test/src/clean_features/dtos/update_product_dto.dart';
 import 'package:inventario_test/src/clean_features/entities/product_entity.dart';
 import 'package:inventario_test/src/clean_features/inputs/add_new_product_input_model.dart';
+import 'package:inventario_test/src/clean_features/inputs/edit_product_input.dart';
 import 'package:inventario_test/src/models/product_model.dart';
 
 class InventoryController extends ChangeNotifier {
@@ -54,6 +56,22 @@ class InventoryController extends ChangeNotifier {
     } catch (e) {
       toastService.error(e.toString());
     }
+  }
+
+  Future<void> updateProduct(int id, EditProductInput epi) async {
+
+    try {
+      UpdateProductDto dto = UpdateProductDto.fromInput(epi);
+      ProductEntity updatedProduct = await model.updateProduct(id, dto);
+      int productIndex = products.indexWhere((element) => element.id == id,);
+      products[productIndex] = updatedProduct;
+      notifyListeners();
+      navigationService.goBack();
+      toastService.success("Producto Actualizado");
+    } catch (e) {
+      toastService.error(e.toString());
+    }
+
   }
 
 }

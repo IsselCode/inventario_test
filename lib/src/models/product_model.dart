@@ -1,6 +1,8 @@
 import 'package:inventario_test/core/database/product_dao.dart';
+import 'package:inventario_test/core/utils/delete_image.dart';
 import 'package:inventario_test/core/utils/save_image_mobile.dart';
 import 'package:inventario_test/src/clean_features/dtos/create_product_dto.dart';
+import 'package:inventario_test/src/clean_features/dtos/update_product_dto.dart';
 import 'package:inventario_test/src/clean_features/entities/product_entity.dart';
 
 class ProductModel {
@@ -48,6 +50,37 @@ class ProductModel {
 
       throw Exception(e.toString());
 
+    }
+
+  }
+
+  Future<ProductEntity> updateProduct(int id, UpdateProductDto dto) async {
+
+    try {
+
+      bool result = await deleteImage(dto.lastImage);
+
+      if (!result) throw Exception("No se pudo eliminar la imagen anterior");
+
+      // Guardar Imagen en dispositivo
+      String imageDirectory = await saveImageMobile(dto.imageBytes!);
+      // Asignar la ruta de la imagen al DTO
+      dto.imageDirectory = imageDirectory;
+
+      // Actualizamos el producto
+      await productDAO.updateProductWithoutStock(id, dto.toMap());
+
+      // Obtenemos el producto
+      Map<String, Object?>? productMap = await productDAO.findProductById(id);
+
+      if (productMap == null) throw Exception("No se encontró el producto");
+
+      ProductEntity product = ProductEntity.fromMap(productMap);
+
+      return product;
+
+    } catch (e) {
+      throw Exception(e.toString());
     }
 
   }
