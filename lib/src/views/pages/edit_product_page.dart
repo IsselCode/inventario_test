@@ -45,7 +45,7 @@ class _EditProductPageState extends State<EditProductPage> with AutomaticKeepAli
                   child: Column(
                     children: [
                       EditProductForm(
-                        image: widget.image,
+                        image: widget.image!,
                         product: widget.productEntity,
                         key: productFormKey,
                         onValidate: (epi) {

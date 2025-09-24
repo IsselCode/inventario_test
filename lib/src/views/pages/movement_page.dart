@@ -32,7 +32,6 @@ class _MovementPageState extends State<MovementPage> {
 
     return SafeArea(
       child: Column(
-        spacing: 50,
         children: [
           //* Imagen
           Container(
@@ -49,6 +48,7 @@ class _MovementPageState extends State<MovementPage> {
                     : Image.asset("assets/no_image.jpg", width: 220, height: 220)
             ),
           ),
+          const SizedBox(height: 50,),
           //* Titulo y Stock
           Flex(
             spacing: 20,
@@ -58,6 +58,7 @@ class _MovementPageState extends State<MovementPage> {
               Text(widget.productEntity.stock.toString(), style: textTheme.displaySmall?.copyWith(color: colorScheme.primary),)
             ],
           ),
+          const SizedBox(height: 50,),
           //* Counter
           StockDeltaPicker(
             value: delta,

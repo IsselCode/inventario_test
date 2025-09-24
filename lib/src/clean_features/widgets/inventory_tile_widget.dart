@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -35,7 +37,10 @@ class InventoryTileWidget extends StatelessWidget {
             height: 120,
             width: 120,
             child: Center(
-              child: Image.asset(asset, height: 100, width: 100,)
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.file(File(asset))
+              )
             ),
           ),
 

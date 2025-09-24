@@ -72,6 +72,11 @@ class _ProductViewState extends State<ProductView> {
           FutureBuilder(
             future: _imageOnce,
             builder: (context, snapshot) {
+
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator(),);
+              }
+
               final bytes = snapshot.data;
               return Expanded(
                 child: PageView(

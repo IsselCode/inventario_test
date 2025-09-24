@@ -16,7 +16,7 @@ import '../../../../inject_container.dart';
 class EditProductForm extends StatefulWidget {
 
   final ProductEntity product;
-  final Uint8List? image;
+  final Uint8List image;
   final Function(EditProductInput epi) onValidate;
 
   const EditProductForm({

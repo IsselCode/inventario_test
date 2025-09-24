@@ -78,27 +78,30 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(20)
             ),
-            child: Center(
-              child: showImage == null
-                ? Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: showImage != null
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        Expanded(child: showImage != null
                           ? Image.memory(showImage!)
                           : Image.asset("assets/no_image.jpg")
-                      ),
-                      const SizedBox(height: 10,),
-                      Text("Selecciona una imagen")
-                    ],
-                  ),
-                )
-                : Image.memory(showImage!, height: 220, width: 220,)
+                        ),
+                        if (showImage == null)...[
+                          const SizedBox(height: 10,),
+                          Text("Selecciona una imagen")
+                        ]
+                      ],
+                    ),
+                  )
+              ),
             ),
           ),
         ),
         // Botón para eliminar imagen
+        if (widget.initialImage == null)
         Positioned(
           right: 0,
           child: CloseButton(
