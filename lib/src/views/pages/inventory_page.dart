@@ -54,10 +54,10 @@ class _InventoryPageState extends State<InventoryPage> {
 
           return ListView.separated(
             separatorBuilder: (context, index) => const SizedBox(height: 10,),
-            itemCount: invCtrl.products.length,
+            itemCount: invCtrl.productsShown.length,
             itemBuilder: (context, index) {
               // Obtenemos el producto mediante el index
-              ProductEntity productEntity = invCtrl.products[index];
+              ProductEntity productEntity = invCtrl.productsShown[index];
               return InventoryTileWidget(
                 asset: productEntity.image,
                 title: productEntity.title,

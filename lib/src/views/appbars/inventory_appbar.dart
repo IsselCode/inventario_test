@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventario_test/src/controllers/ui/inventory_controller.dart';
+import 'package:inventario_test/src/controllers/ui/appbar_controller.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +12,7 @@ class InventoryAppbar extends StatelessWidget implements PreferredSizeWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     
-    InventoryController inventoryController = context.watch();
+    AppbarController inventoryController = context.watch();
     
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),

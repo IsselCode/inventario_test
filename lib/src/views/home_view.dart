@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventario_test/core/services/navigation_service.dart';
-import 'package:inventario_test/src/controllers/ui/inventory_controller.dart';
+import 'package:inventario_test/src/controllers/ui/appbar_controller.dart';
 import 'package:inventario_test/src/views/appbars/history_appbar.dart';
 import 'package:inventario_test/src/views/appbars/inventory_appbar.dart';
 import 'package:inventario_test/src/views/appbars/profile_appbar.dart';
@@ -52,7 +52,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
 
     return ChangeNotifierProvider(
-      create: (context) => InventoryController(navigationService: locator()),
+      create: (context) => AppbarController(navigationService: locator(), inventoryController: context.read()),
       builder: (context, child) {
         return Scaffold(
           appBar: appbars[currentPage],

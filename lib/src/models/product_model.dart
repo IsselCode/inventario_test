@@ -101,4 +101,20 @@ class ProductModel {
 
   }
 
+  Future<List<ProductEntity>> searchProductsByName(String name) async {
+
+    try {
+
+      List<Map<String, Object?>> productMap = await productDAO.findProductByName(name);
+
+      return productMap.map((e) => ProductEntity.fromMap(e),).toList();
+
+    } catch (e) {
+
+      throw Exception(e.toString());
+
+    }
+
+  }
+
 }
