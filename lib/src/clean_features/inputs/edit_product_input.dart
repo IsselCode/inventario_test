@@ -2,20 +2,23 @@ import 'dart:typed_data';
 import 'package:dartz/dartz.dart';
 
 class EditProductInput {
-  Uint8List? image;
+  Uint8List image;
   String name;
   String description;
   double price;
+  String lastImage;
 
   EditProductInput({
-    this.image,
+    required this.image,
     required this.name,
     required this.description,
     required this.price,
+    required this.lastImage
   });
 
   static Either<List<String>, EditProductInput> fromRaw({
-    Uint8List? image,
+    required Uint8List image,
+    required String lastImage,
     required String name,
     required String description,
     required String rawPrice,
@@ -55,6 +58,7 @@ class EditProductInput {
     // Todo válido, crear el modelo
     return right(EditProductInput(
       image: image,
+      lastImage: lastImage,
       name: trimmedName,
       description: trimmedDescription,
       price: parsedPrice!,

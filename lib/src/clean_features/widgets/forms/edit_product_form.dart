@@ -35,7 +35,7 @@ class EditProductFormState extends State<EditProductForm> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
-  Uint8List? selectedImage;
+  late Uint8List selectedImage;
 
   //! Iniciar elementos
   @override
@@ -54,7 +54,7 @@ class EditProductFormState extends State<EditProductForm> {
       return;
     }
 
-    Uint8List? image = selectedImage;
+    Uint8List image = selectedImage;
     String name = nameController.text;
     String description = descriptionController.text;
     String price = priceController.text;
@@ -63,7 +63,8 @@ class EditProductFormState extends State<EditProductForm> {
       name: name,
       description: description,
       rawPrice: price,
-      image: image
+      image: image,
+      lastImage: widget.product.image
     );
 
     return response.fold(
@@ -86,7 +87,7 @@ class EditProductFormState extends State<EditProductForm> {
         children: [
 
           ImagePickerWidget(
-            onChanged: (image) => selectedImage = image,
+            onChanged: (image) => selectedImage = image!,
             initialImage: selectedImage,
           ),
 
