@@ -159,4 +159,14 @@ class ProductModel {
 
   }
 
+  Future<void> deleteMovById(int id) async {
+
+    try {
+      await invMovDao.deleteMovementById(id);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+
+  }
+
 }

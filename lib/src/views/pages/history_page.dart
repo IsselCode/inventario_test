@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inventario_test/core/app/enums.dart';
 import 'package:inventario_test/src/clean_features/entities/movement_entity.dart';
+import 'package:inventario_test/src/clean_features/widgets/dialogs/remove_movement_dialog.dart';
 import 'package:inventario_test/src/clean_features/widgets/history_tile_widget.dart';
 import 'package:inventario_test/src/controllers/logic/inventory_controller.dart';
 import 'package:provider/provider.dart';
@@ -47,6 +48,12 @@ class _HistoryPageState extends State<HistoryPage> {
                 title: movement.productName,
                 date: movement.createdAt,
                 quantity: movement.qnty,
+                onLongPress: () async {
+                  showDialog(
+                    context: context,
+                    builder: (context) => RemoveMovementDialog(movement: movement),
+                  );
+                },
               );
             },
           );

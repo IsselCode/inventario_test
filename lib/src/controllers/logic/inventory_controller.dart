@@ -168,4 +168,28 @@ class InventoryController extends ChangeNotifier {
 
   }
 
+  Future<void> deleteMovById(int id, int productId, InventoryMovementType type, int qnty) async {
+
+    try {
+
+      // Remover producto desde el modelo
+      await model.deleteMovById(id);
+      // Remover el producto de la lista
+      movements.removeWhere((element) => element.id == id,);
+      // Ajusta el stock del producto
+      int indexProduct = products.indexWhere((element) => element.id == productId,);
+      if (type == InventoryMovementType.stockIn) {
+        products[indexProduct].stock -= qnty;
+      } else {
+        products[indexProduct].stock += qnty;
+      }
+      // Mostrar todos los productos para asignar y notificar los cambios correctamente
+      showAllProducts();
+      toastService.success("Movimiento eliminado");
+    } catch (e) {
+      toastService.error(e.toString());
+    }
+
+  }
+
 }
