@@ -7,6 +7,7 @@ import 'package:inventario_test/src/controllers/logic/inventory_controller.dart'
 import 'package:inventario_test/src/controllers/logic/user_controller.dart';
 import 'package:inventario_test/src/models/product_model.dart';
 import 'package:inventario_test/src/views/first_screen_view.dart';
+import 'package:inventario_test/src/views/home_view.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             navigatorKey: locator<NavigationService>().navigatorKey,
             theme: lightTheme,
-            home: FirstScreenView()
+            home: HomeView()
           ),
         );
       },

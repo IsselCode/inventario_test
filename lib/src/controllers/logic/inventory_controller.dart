@@ -19,8 +19,9 @@ class InventoryController extends ChangeNotifier {
   });
 
   List<ProductEntity> products = <ProductEntity>[];
+  bool isLoaded = false;
 
-  Future<void> createNewProduct (AddNewProductInputModel anpim) async {
+  Future<void> createNewProduct(AddNewProductInputModel anpim) async {
 
     try {
       // Crear el DTO
@@ -36,6 +37,23 @@ class InventoryController extends ChangeNotifier {
       toastService.error(e.toString());
     }
 
+  }
+
+  Future<void> getProducts() async {
+    try {
+      // Si ya fueron cargados, no hacer nada
+      if (isLoaded) return;
+      // Obtener los productos
+      products = await model.getProducts();
+      // Indicar que los productos ya han sido cargados
+      isLoaded = true;
+      // Notificar los cambios
+      notifyListeners();
+      // Mostrar mensaje indicativo (temporal)
+      toastService.success("Productos cargados");
+    } catch (e) {
+      toastService.error(e.toString());
+    }
   }
 
 }

@@ -36,4 +36,20 @@ class ProductModel {
 
   }
 
+  Future<List<ProductEntity>> getProducts() async {
+
+    try {
+
+      List<Map<String, Object?>> productMap = await productDAO.getProducts();
+
+      return productMap.map((e) => ProductEntity.fromMap(e),).toList();
+
+    } catch (e) {
+
+      throw Exception(e.toString());
+
+    }
+
+  }
+
 }
