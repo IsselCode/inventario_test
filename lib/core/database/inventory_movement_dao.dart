@@ -5,7 +5,7 @@ class InventoryMovementDAO {
   InventoryMovementDAO({required this.db});
 
   // Movimientos de inventario
-  Future<List<Map<String, Object?>>> getMovements() => db.query("inventoryMovement");
+  Future<List<Map<String, Object?>>> getMovements() => db.query("inventoryMovement", orderBy: "create_at DESC");
 
   Future<Map<String, Object?>?> findMovById(int id) async {
     final result = await db.query(

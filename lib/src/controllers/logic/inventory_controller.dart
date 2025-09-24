@@ -123,6 +123,7 @@ class InventoryController extends ChangeNotifier {
 
   /// MOVIMIENTOS
   List<MovementEntity> movements = <MovementEntity>[];
+  bool movLoaded = false;
 
   Future<void> createMovement(ProductEntity product, int delta, InventoryMovementType type) async {
 
@@ -146,6 +147,23 @@ class InventoryController extends ChangeNotifier {
       showAllProducts();
     } catch (e) {
       toastService.error(e.toString());
+    }
+
+  }
+
+  Future<void> getMovements() async {
+
+    try {
+
+      if (movLoaded) return ;
+      movements = await model.getMovements();
+      movLoaded = true;
+      notifyListeners();
+
+    } catch (e) {
+
+      toastService.error("Error al cargar los movimientos");
+
     }
 
   }

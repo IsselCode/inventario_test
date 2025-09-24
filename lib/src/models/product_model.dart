@@ -145,4 +145,18 @@ class ProductModel {
 
   }
 
+  Future<List<MovementEntity>> getMovements() async {
+
+    try {
+
+      List<Map<String, Object?>> movMap = await invMovDao.getMovements();
+
+      return movMap.map((e) => MovementEntity.fromMap(e),).toList();
+
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+
+  }
+
 }
