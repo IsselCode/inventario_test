@@ -85,4 +85,20 @@ class ProductModel {
 
   }
 
+  Future<void> deleteProductById(int id, String image) async {
+
+    try {
+
+      bool result = await deleteImage(image);
+
+      if (!result) throw Exception("No se pudo remover la imagen");
+
+      await productDAO.deleteProductById(id);
+
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+
+  }
+
 }

@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:inventario_test/src/clean_features/entities/product_entity.dart';
+import 'package:inventario_test/src/controllers/logic/inventory_controller.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/app/consts.dart';
 
@@ -64,7 +66,9 @@ class _RemoveProductDialogState extends State<RemoveProductDialog> {
 
                     setState(() {isLoading = true;});
 
-                    await Future.delayed(Duration(seconds: 3));
+                    InventoryController invCtrl = context.read();
+
+                    await invCtrl.deleteProductById(widget.productEntity.id, widget.productEntity.image);
 
                     setState(() {isLoading = false;});
 

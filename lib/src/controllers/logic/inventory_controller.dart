@@ -32,6 +32,8 @@ class InventoryController extends ChangeNotifier {
       ProductEntity newProduct = await model.createProduct(dto);
       // Añadir el nuevo producto a la lista
       products.add(newProduct);
+      // Notificar los cambios
+      notifyListeners();
       // Navegar a la pantalla anterior
       navigationService.goBack();
     } catch (e) {
@@ -69,6 +71,24 @@ class InventoryController extends ChangeNotifier {
       navigationService.goBack();
       toastService.success("Producto Actualizado");
     } catch (e) {
+      toastService.error(e.toString());
+    }
+
+  }
+
+  Future<void> deleteProductById(int id, String image) async {
+
+    try {
+
+      await model.deleteProductById(id, image);
+
+      products.removeWhere((element) => element.id == id,);
+
+      notifyListeners();
+
+      toastService.success("Producto eliminado");
+
+    } catch(e) {
       toastService.error(e.toString());
     }
 
