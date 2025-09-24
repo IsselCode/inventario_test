@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inventario_test/core/services/navigation_service.dart';
 import 'package:inventario_test/src/clean_features/entities/product_entity.dart';
+import 'package:inventario_test/src/clean_features/widgets/dialogs/remove_product_dialog.dart';
 import 'package:inventario_test/src/clean_features/widgets/inventory_tile_widget.dart';
 import 'package:inventario_test/src/controllers/logic/inventory_controller.dart';
 import 'package:inventario_test/src/views/product_view.dart';
@@ -62,6 +63,13 @@ class _InventoryPageState extends State<InventoryPage> {
                 title: productEntity.title,
                 description: productEntity.description,
                 onTap: () => onTapProduct(productEntity),
+                onLongPress: () async {
+                  bool result = await showDialog(
+                    context: context,
+                    builder: (context) => RemoveProductDialog(productEntity: productEntity),
+                  );
+                  print(result);
+                },
               );
             },
           );

@@ -9,13 +9,15 @@ class InventoryTileWidget extends StatelessWidget {
   final String title;
   final String description;
   final VoidCallback onTap;
+  final VoidCallback onLongPress;
 
   const InventoryTileWidget({
     super.key,
     required this.asset,
     required this.title,
     required this.description,
-    required this.onTap
+    required this.onTap,
+    required this.onLongPress,
   });
 
   @override
@@ -26,6 +28,7 @@ class InventoryTileWidget extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
+      onLongPress: onLongPress,
       borderRadius: BorderRadius.circular(20),
       child: Row(
         children: [
