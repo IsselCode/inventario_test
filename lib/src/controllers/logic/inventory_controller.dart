@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:inventario_test/core/app/enums.dart';
 import 'package:inventario_test/core/services/navigation_service.dart';
 import 'package:inventario_test/core/services/toast_service.dart';
+import 'package:inventario_test/src/clean_features/dtos/create_inv_mov_dto.dart';
 import 'package:inventario_test/src/clean_features/dtos/create_product_dto.dart';
 import 'package:inventario_test/src/clean_features/dtos/update_product_dto.dart';
+import 'package:inventario_test/src/clean_features/entities/movement_entity.dart';
 import 'package:inventario_test/src/clean_features/entities/product_entity.dart';
 import 'package:inventario_test/src/clean_features/inputs/add_new_product_input_model.dart';
 import 'package:inventario_test/src/clean_features/inputs/edit_product_input.dart';
 import 'package:inventario_test/src/models/product_model.dart';
+import 'package:provider/provider.dart';
 
 class InventoryController extends ChangeNotifier {
 
@@ -115,6 +119,35 @@ class InventoryController extends ChangeNotifier {
   void showAllProducts() {
     productsShown = products;
     notifyListeners();
+  }
+
+  /// MOVIMIENTOS
+  List<MovementEntity> movements = <MovementEntity>[];
+
+  Future<void> createMovement(ProductEntity product, int delta, InventoryMovementType type) async {
+
+    try {
+      // Crear DTO
+      CreateInvMovDto dto = CreateInvMovDto(
+          productId: product.id,
+          productName: product.title,
+          type: type,
+          qnty: delta,
+          priceAt: product.price
+      );
+      // Crear el movimiento
+      MovementEntity movementEntity = await model.createMovement(dto);
+      // Agregar el movimiento a la lista de movimientos
+      movements.add(movementEntity);
+      // Ajustar los cambios en el producto
+      int indexProduct = products.indexWhere((element) => element.id == product.id,);
+      products[indexProduct].stock += delta; // Pasamos el valor no absoluto
+      // notificar cambios y mostramos todos los productos para aplicar cambios
+      showAllProducts();
+    } catch (e) {
+      toastService.error(e.toString());
+    }
+
   }
 
 }

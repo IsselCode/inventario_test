@@ -25,6 +25,6 @@ Future<void> injectContainer() async {
   locator.registerLazySingleton(() => ToastService(),);
 
   locator.registerLazySingleton(() => SharedModel(shared: locator()),);
-  locator.registerLazySingleton(() => ProductModel(productDAO: locator()),);
+  locator.registerLazySingleton(() => ProductModel(productDAO: locator(), invMovDao: locator()),);
 
 }

@@ -3,8 +3,11 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:inventario_test/src/clean_features/entities/product_entity.dart';
 import 'package:inventario_test/src/clean_features/widgets/stock_delta_picker.dart';
+import 'package:inventario_test/src/controllers/logic/inventory_controller.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:provider/provider.dart';
 
+import '../../../core/app/enums.dart';
 import '../../clean_features/widgets/filled_button_widget.dart';
 
 class MovementPage extends StatefulWidget {
@@ -24,9 +27,11 @@ class MovementPage extends StatefulWidget {
 
 class _MovementPageState extends State<MovementPage> {
   int delta = 0;
+  InventoryMovementType? invMovType;
 
   @override
   Widget build(BuildContext context) {
+    InventoryController invCtrl = context.watch();
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
 
@@ -65,9 +70,8 @@ class _MovementPageState extends State<MovementPage> {
             min: -widget.productEntity.stock,
             max: 9999999,
             onChanged: (value, type) {
-              print(value);
               delta = value;
-              print(type);
+              invMovType = type;
               setState(() {});
             },
       
@@ -78,7 +82,10 @@ class _MovementPageState extends State<MovementPage> {
             child: Center( // centra el botón horizontalmente
               child: FilledButtonWidget(
                 onPressed: () {
-      
+                  if (invMovType != null) {
+                    InventoryController invCtrl = context.read();
+                    invCtrl.createMovement(widget.productEntity, delta, invMovType!);
+                  }
                 },
                 icon: Symbols.arrow_forward,
                 width: 250,
