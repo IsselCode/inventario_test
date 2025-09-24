@@ -1,30 +1,29 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
-/// Guarda una imagen (Uint8List) en una carpeta privada de la app
-/// y devuelve la ruta absoluta (String).
-/// Plataforma: Android / iOS.
+/// Guarda bytes de imagen en una carpeta de la app y devuelve la ruta absoluta.
 Future<String> saveImageMobile(Uint8List bytes) async {
-  if (bytes.isEmpty) {
-    throw ArgumentError('bytes está vacío');
-  }
 
-  // Directorio de documentos de la app
-  final dir = await getApplicationDocumentsDirectory();
+  // 1) Directorio base propio de la app
+  final Directory baseDir = await getApplicationSupportDirectory();
 
-  // Subcarpeta para imágenes
-  final imagesDir = Directory('${dir.path}/images');
+  // 2) Subcarpeta para imágenes
+  final Directory imagesDir = Directory(p.join(baseDir.path, "images"));
   if (!await imagesDir.exists()) {
     await imagesDir.create(recursive: true);
   }
 
-  // Nombre sencillo con timestamp
-  final fileName = 'img_${DateTime.now().millisecondsSinceEpoch}.png';
-  final filePath = '${imagesDir.path}/$fileName';
+  // 3) Nombre de archivo
+  String name = 'img_${DateTime.now().microsecondsSinceEpoch}';
+  String extension = ".png";
+  String safeName = '$name$extension';
 
-  // Guardar
-  final file = File(filePath);
+  final String fullPath = p.join(imagesDir.path, safeName);
+
+  // 4) Escribir bytes
+  final file = File(fullPath);
   await file.writeAsBytes(bytes, flush: true);
 
   return file.path;
