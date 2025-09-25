@@ -9,6 +9,8 @@ import 'package:inventario_test/src/clean_features/entities/movement_entity.dart
 import 'package:inventario_test/src/clean_features/entities/product_entity.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../../core/errors/exceptions.dart';
+
 class ProductModel {
 
   ProductDAO productDAO;
@@ -44,10 +46,8 @@ class ProductModel {
 
       if (e.isUniqueConstraintError()) errorMessage = "El titulo ya existe";
 
-      throw Exception(errorMessage);
+      throw AppException(message: errorMessage);
 
-    } catch (e) {
-      throw Exception(e.toString());
     }
 
   }
@@ -74,7 +74,7 @@ class ProductModel {
 
       bool result = await deleteImage(dto.lastImage);
 
-      if (!result) throw Exception("No se pudo eliminar la imagen anterior");
+      if (!result) throw AppException(message: "No se pudo eliminar la imagen anterior");
 
       // Guardar Imagen en dispositivo
       String imageDirectory = await saveImageMobile(dto.imageBytes!);
@@ -93,8 +93,8 @@ class ProductModel {
 
       return product;
 
-    } catch (e) {
-      throw Exception(e.toString());
+    } on AppException catch (e) {
+      throw AppException(message: e.message);
     }
 
   }

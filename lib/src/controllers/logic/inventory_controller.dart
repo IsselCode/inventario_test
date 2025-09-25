@@ -12,6 +12,8 @@ import 'package:inventario_test/src/clean_features/inputs/edit_product_input.dar
 import 'package:inventario_test/src/models/product_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/errors/exceptions.dart';
+
 class InventoryController extends ChangeNotifier {
 
   ProductModel model;
@@ -42,9 +44,9 @@ class InventoryController extends ChangeNotifier {
       notifyListeners();
       // Navegar a la pantalla anterior
       navigationService.goBack();
-    } catch (e) {
+    } on AppException catch (e) {
       // Mostrar el error
-      toastService.error(e.toString());
+      toastService.error(e.message);
     }
 
   }
