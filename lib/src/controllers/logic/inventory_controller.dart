@@ -141,7 +141,7 @@ class InventoryController extends ChangeNotifier {
       // Crear el movimiento
       MovementEntity movementEntity = await model.createMovement(dto);
       // Agregar el movimiento a la lista de movimientos
-      movements.add(movementEntity);
+      movements.insert(0, movementEntity);
       // Ajustar los cambios en el producto
       int indexProduct = products.indexWhere((element) => element.id == product.id,);
       products[indexProduct].stock += delta; // Pasamos el valor no absoluto

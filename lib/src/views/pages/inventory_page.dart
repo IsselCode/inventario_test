@@ -61,6 +61,8 @@ class _InventoryPageState extends State<InventoryPage> {
               return InventoryTileWidget(
                 asset: productEntity.image,
                 title: productEntity.title,
+                price: productEntity.price,
+                stock: productEntity.stock,
                 description: productEntity.description,
                 onTap: () => onTapProduct(productEntity),
                 onLongPress: () async {

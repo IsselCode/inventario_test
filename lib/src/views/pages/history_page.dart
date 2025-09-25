@@ -45,6 +45,7 @@ class _HistoryPageState extends State<HistoryPage> {
               MovementEntity movement = invCtrl.movements[index];
               return HistoryTileWidget(
                 movementType: movement.type,
+                priceAt: movement.priceAt,
                 title: movement.productName,
                 date: movement.createdAt,
                 quantity: movement.qnty,

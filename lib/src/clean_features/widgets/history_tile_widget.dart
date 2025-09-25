@@ -8,6 +8,7 @@ class HistoryTileWidget extends StatelessWidget {
   final String title;
   final DateTime date;
   final int quantity;
+  final double priceAt;
   final VoidCallback onLongPress;
 
   const HistoryTileWidget({
@@ -16,6 +17,7 @@ class HistoryTileWidget extends StatelessWidget {
     required this.title,
     required this.date,
     required this.quantity,
+    required this.priceAt,
     required this.onLongPress,
   });
 
@@ -43,10 +45,19 @@ class HistoryTileWidget extends StatelessWidget {
             ),
             const SizedBox(width: 10,),
             Expanded(
-              child: Text(
-                title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 5,
+                children: [
+                  Text(
+                    title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    priceAt.toStringAsFixed(2),
+                  ),
+                ],
               )
             ),
             const SizedBox(width: 10,),
