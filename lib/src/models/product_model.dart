@@ -7,6 +7,7 @@ import 'package:inventario_test/src/clean_features/dtos/create_product_dto.dart'
 import 'package:inventario_test/src/clean_features/dtos/update_product_dto.dart';
 import 'package:inventario_test/src/clean_features/entities/movement_entity.dart';
 import 'package:inventario_test/src/clean_features/entities/product_entity.dart';
+import 'package:sqflite/sqflite.dart';
 
 class ProductModel {
 
@@ -36,6 +37,14 @@ class ProductModel {
       ProductEntity productEntity = ProductEntity.fromMap(map);
 
       return productEntity;
+
+    } on DatabaseException catch (e) {
+
+      String errorMessage = "Error de base de datos";
+
+      if (e.isUniqueConstraintError()) errorMessage = "El titulo ya existe";
+
+      throw Exception(errorMessage);
 
     } catch (e) {
       throw Exception(e.toString());
