@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:inventario_test/core/utils/get_initials_util.dart';
 import 'package:inventario_test/src/clean_features/widgets/filled_button_widget.dart';
 import 'package:inventario_test/src/clean_features/widgets/text_form_field_widget.dart';
+import 'package:inventario_test/src/controllers/logic/auth_controller.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     
     UserController userController = context.read();
+    AuthController authController = context.read();
 
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -32,7 +34,7 @@ class ProfilePage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: AutoSizeText(
-                  getInitialsUtil(userController.user.name,),
+                  getInitialsUtil(userController.user!.name,),
                   maxFontSize: 80,
                   minFontSize: 45,
                   maxLines: 1,
@@ -44,7 +46,7 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(height: 30,),
 
           TextFormFieldWidget(
-            hintText: userController.user.name,
+            hintText: userController.user!.name,
             icon: Symbols.person_outline,
             readOnly: true,
             showIcon: false,
@@ -53,7 +55,7 @@ class ProfilePage extends StatelessWidget {
 
           TextFormFieldWidget(
             showIcon: false,
-            hintText: userController.user.username,
+            hintText: userController.user!.username,
             icon: Symbols.person_outline,
             readOnly: true,
           ),
@@ -64,7 +66,7 @@ class ProfilePage extends StatelessWidget {
             alignment: Alignment.center,
             child: FilledButtonWidget(
               onPressed: () {
-
+                authController.signOut();
               },
               icon: Symbols.exit_to_app,
               text: "Salir"

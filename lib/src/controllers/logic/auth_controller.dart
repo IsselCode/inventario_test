@@ -12,6 +12,7 @@ import 'package:inventario_test/src/clean_features/inputs/register_input_model.d
 import 'package:inventario_test/src/controllers/logic/user_controller.dart';
 import 'package:inventario_test/src/models/shared_model.dart';
 import 'package:inventario_test/src/views/home_view.dart';
+import 'package:inventario_test/src/views/login_view.dart';
 
 class AuthController extends ChangeNotifier {
 
@@ -68,6 +69,12 @@ class AuthController extends ChangeNotifier {
       },
     );
 
+  }
+
+  void signOut() {
+    userController.user = null;
+    navigationService.navigateAndReplace(LoginView());
+    notifyListeners();
   }
 
 }

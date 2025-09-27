@@ -27,40 +27,41 @@ class LoginView extends StatelessWidget {
           child: Icon(Symbols.arrow_forward),
         ),
       ),
-      body: AuthStructureWidget(
-        child: Column(
-          children: [
-            //! Imagen
-            Image.asset("assets/box.png", width: 150, height: 150,),
-            const SizedBox(height: 50,),
-
-            //! Registro
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text("Ingresar", style: textTheme.displayLarge,),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    minimumSize: Size.zero, // Elimina el tamaño mínimo
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Reduce el área táctil
-                  ),
-                  onPressed: () => goToRegisterViewAct(context),
-                  child: Text("Registrarse"),
-                )
-              ],
-            ),
-            const SizedBox(height: 50,),
-
-            //! Formulario
-            LoginForm(
-              key: _childKey,
-              onValidate: authController.loginUser,
-            ),
-            Spacer()
-          ],
-        )
+      body: SingleChildScrollView(
+        child: AuthStructureWidget(
+          child: Column(
+            children: [
+              //! Imagen
+              Image.asset("assets/box.png", width: 150, height: 150,),
+              const SizedBox(height: 50,),
+        
+              //! Registro
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text("Ingresar", style: textTheme.displayLarge,),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      minimumSize: Size.zero, // Elimina el tamaño mínimo
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Reduce el área táctil
+                    ),
+                    onPressed: () => goToRegisterViewAct(context),
+                    child: Text("Registrarse"),
+                  )
+                ],
+              ),
+              const SizedBox(height: 50,),
+        
+              //! Formulario
+              LoginForm(
+                key: _childKey,
+                onValidate: authController.loginUser,
+              ),
+            ],
+          )
+        ),
       ),
     );
   }
